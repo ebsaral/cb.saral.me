@@ -2,13 +2,22 @@ import Link from 'next/link'
 
 const navItems = {
   '/': {
-    name: 'home',
+    name: 'tanıtım',
   },
-  '/blog': {
-    name: 'blog',
+  '/proje': {
+    name: 'projeler',
   },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: 'deploy',
+  'makale': {
+    name: 'makaleler'
+  },
+  'teori': {
+    name: 'teoriler'
+  },
+  'hikaye': {
+    name: 'hikâyeler'
+  },
+  '/destek': {
+    name: 'destek?',
   },
 }
 
