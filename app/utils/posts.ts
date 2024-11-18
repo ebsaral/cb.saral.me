@@ -51,8 +51,20 @@ function getMDXData(dir) {
   })
 }
 
-export function getPosts(section: string) {
-  return getMDXData(path.join(process.cwd(), 'app', section, 'posts'))
+export function getPosts(section: string): {
+  data: {
+    metadata: Metadata;
+    slug: string;
+    content: string;
+  }[],
+  sectionInfo: {
+    section: string;
+    title: string;
+    description: string;
+  }
+} {
+  const { Metadata } = require(`app/${section}/info`)
+  return {data : getMDXData(path.join(process.cwd(), 'app', section, 'posts')), sectionInfo: Metadata}
 }
 
 export function formatDate(date: string, includeRelative = false) {

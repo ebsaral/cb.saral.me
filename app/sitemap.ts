@@ -1,11 +1,10 @@
 import { getPosts } from 'app/utils/posts'
-import {Metadata as ProjeMetadata} from 'app/proje/info'
 
 export const baseUrl = 'https://cb.saral.me'
 type MetaObject = {url: string, lastModified: string}
 
 async function getSitemap(section: string) {
-  let posts = getPosts(ProjeMetadata.section).map((post) => ({
+  let posts = getPosts("proje").data.map((post) => ({
     url: `${baseUrl}/${section}/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }))
@@ -21,9 +20,9 @@ export default async function sitemap() {
   let routes: MetaObject[] = []
   let posts: MetaObject[] = []
   
-  const projeSitemap = await getSitemap(ProjeMetadata.section)
+  const projeSitemap = await getSitemap("proje")
   routes.push(...projeSitemap.routes)
   posts.push(...projeSitemap.posts)
-  
+
   return [...routes, ...posts]
 }

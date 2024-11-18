@@ -7,7 +7,7 @@ import { Metadata } from '../info';
 const section = Metadata.section;
 
 export async function generateStaticParams() {
-  let posts = getPosts(section)
+  let posts = getPosts(section).data
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  let post = getPosts(section).find((post) => post.slug === slug)
+  let post = getPosts(section).data.find((post) => post.slug === slug)
   if (!post) {
     return
   }
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Blog({ params }) {
   const {slug} = await params;
-  let post = getPosts(section).find((post) => post.slug === slug)
+  let post = getPosts(section).data.find((post) => post.slug === slug)
 
   if (!post) {
     notFound()

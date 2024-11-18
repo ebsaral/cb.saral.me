@@ -6,7 +6,7 @@ export function Posts({section}: {section: string}) {
 
   return (
     <div>
-      {allBlogs
+      {allBlogs.data
         .sort((a, b) => {
           if (
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
