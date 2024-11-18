@@ -1,18 +1,22 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import { formatDate, getBlogPosts } from 'app/proje/utils'
+import { formatDate, getPosts } from 'app/utils/posts'
 import { baseUrl } from 'app/sitemap'
+import { Metadata } from '../info';
+
+const section = Metadata.section;
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts()
+  let posts = getPosts(section)
 
   return posts.map((post) => ({
     slug: post.slug,
   }))
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  let post = getPosts(section).find((post) => post.slug === slug)
   if (!post) {
     return
   }
@@ -35,7 +39,7 @@ export function generateMetadata({ params }) {
       description,
       type: 'article',
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${baseUrl}/${section}/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -51,8 +55,9 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export default async function Blog({ params }) {
+  const {slug} = await params;
+  let post = getPosts(section).find((post) => post.slug === slug)
 
   if (!post) {
     notFound()
@@ -74,10 +79,10 @@ export default function Blog({ params }) {
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: `${baseUrl}/${section}/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'My Portfolio',
+              name: 'Emin Buğra Saral',
             },
           }),
         }}
