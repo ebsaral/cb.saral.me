@@ -11,15 +11,15 @@ import { baseUrl } from './sitemap'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Emin Buğra Saral | Cumhurbaşkanlığına Doğru',
+    default: 'this that those then though',
     template: '%s | Next.js Portfolio Starter',
   },
-  description: 'Emin Buğra Saral : Türkiye Cumhuriyeti Cumhurbaşkanı Adaylığı İçin Tanıtım Sitesi',
+  description: 'Emin Buğra Saral : this that those then though',
   openGraph: {
-    title: 'Emin Buğra Saral | Cumhurbaşkanlığına Doğru',
-    description: 'Emin Buğra Saral : Türkiye Cumhuriyeti Cumhurbaşkanı Adaylığı İçin Tanıtım Sitesi',
+    title: 'this that those then though',
+    description: 'this that those then though',
     url: baseUrl,
-    siteName: 'Aday Tanıtımı',
+    siteName: 'this that those then though',
     locale: 'tr_TR',
     type: 'website',
   },
