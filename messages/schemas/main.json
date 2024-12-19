@@ -1,0 +1,11 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "JSON schema for Saral.me",
+	"type": "object",
+	"properties": {
+	  "title": {"type": "string"},
+	  "not_found": {"type": "string"}
+	},
+	"required": ["title", "not_found"],
+	"additionalProperties": false
+  }
