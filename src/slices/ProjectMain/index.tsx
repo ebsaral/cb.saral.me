@@ -16,7 +16,6 @@ const ProjectMain = ({ slice }: ProjectMainProps) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <div>{slice.primary.title}</div>
       <div><PrismicImage field={slice.primary.header_image} width={400} /></div>
       <div><PrismicRichText field={slice.primary.content} /></div>
     </section>

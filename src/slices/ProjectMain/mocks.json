@@ -36,11 +36,6 @@
 				"alt": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
-			},
-			"title": {
-				"__TYPE__": "FieldContent",
-				"value": "heat",
-				"type": "Text"
 			}
 		},
 		"items": []

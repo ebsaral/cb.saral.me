@@ -10,6 +10,7 @@ import {routing} from '@/i18n/routing';
 import { Inter } from 'next/font/google'
  
 import "../globals.css";
+import { Wrapper } from '@/components';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -36,7 +37,7 @@ export default async function RootLayout({
         className={`${inter.className}`}
       >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Wrapper>{children}</Wrapper>
           <PrismicPreview repositoryName={repositoryName} />
           <Analytics />
           <SpeedInsights />

@@ -76,16 +76,6 @@ export type AllDocumentTypes = ProjectPostDocument;
  */
 export interface ProjectMainSliceDefaultPrimary {
   /**
-   * title field in *ProjectMain → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_main.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
    * header_image field in *ProjectMain → Default → Primary*
    *
    * - **Field Type**: Image
