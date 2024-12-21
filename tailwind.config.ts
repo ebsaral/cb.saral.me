@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 import daisyui from "daisyui"
-
+import typography from "@tailwindcss/typography"
 
 export default {
   content: [
@@ -9,6 +9,9 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       colors: {
         background: "var(--background)",
@@ -17,6 +20,7 @@ export default {
     },
   },
   plugins: [
+    typography,
     daisyui
   ],
   daisyui: {
