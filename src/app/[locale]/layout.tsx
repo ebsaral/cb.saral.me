@@ -2,6 +2,10 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
+
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
+
 import {routing} from '@/i18n/routing';
 import { Inter } from 'next/font/google'
  
@@ -33,6 +37,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           {children}
+          <PrismicPreview repositoryName={repositoryName} />
           <Analytics />
           <SpeedInsights />
         </NextIntlClientProvider>

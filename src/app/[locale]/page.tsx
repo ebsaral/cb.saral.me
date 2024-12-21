@@ -74,7 +74,6 @@ export default function Home() {
             <b>To-do(s):</b>
             <ul>
               <li>- design home page</li>
-              <li>- implement mdx support with localization</li>
               <li>- add pages to display projects (ideas), theories, articles (essays) and stories</li>
               <li>- add functionality to search in content</li>
               <li>- add rss support</li>
