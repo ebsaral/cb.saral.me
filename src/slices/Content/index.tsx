@@ -11,14 +11,14 @@ export type ProjectMainProps = SliceComponentProps<Content.ProjectMainSlice>;
  */
 const ProjectMain = ({ slice }: ProjectMainProps) => {
   return (
-    <section
-      className="flex flex-col items-center"
+    <article
+      className="prose prose-slate prose-p:text-justify prose-p:indent-4"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <div><PrismicImage field={slice.primary.header_image} width={400} /></div>
-      <div><PrismicRichText field={slice.primary.content} /></div>
-    </section>
+      <PrismicImage field={slice.primary.header_image} width={400} />
+      <PrismicRichText field={slice.primary.content} />
+      </article>
   );
 };
 

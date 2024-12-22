@@ -5,15 +5,16 @@ import { FaPencil } from "react-icons/fa6";
 import { LuScanFace } from "react-icons/lu";
 import { RiHome9Fill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export function MenuListItems() {
     const t = useTranslations("Pages")
     return <>
-        <li><a><RiHome9Fill />{' '}{t("Home.title")}</a></li>
-        <li><a><MdWorkHistory />{' '}{t("Projects.title")}</a></li>
-        <li><a><GoProjectRoadmap />{' '}{t("Articles.title")}</a></li>
-        <li><a><FaPencil />{' '}{t("Stories.title")}</a></li>
-        <li><a><LuScanFace />{' '}{t("About.title")}</a></li>
+        <li><Link href="/"><RiHome9Fill />{' '}{t("Home.title")}</Link></li>
+        <li><Link href="/projects"><MdWorkHistory />{' '}{t("Projects.title")}</Link></li>
+        <li><Link href="/articles"><GoProjectRoadmap />{' '}{t("Articles.title")}</Link></li>
+        <li><Link href="/stories"><FaPencil />{' '}{t("Stories.title")}</Link></li>
+        <li><Link href="/about"><LuScanFace />{' '}{t("About.title")}</Link></li>
     </>
 }
 

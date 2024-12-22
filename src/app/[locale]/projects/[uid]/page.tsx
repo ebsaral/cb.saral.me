@@ -1,11 +1,11 @@
 import { Metadata } from "next";
-import { PrismicMetadata, PrismicPage, PrismicStaticParams } from "@/components";
+import { PrismicMetadata, PrismicContent, PrismicStaticParams } from "@/components";
 import { PrismicParams } from "@/components/types";
 
 const document = "post";
 
 export default async function Page({ params }: { params: Promise<PrismicParams> }) {
-  return await PrismicPage({document, params})
+  return await PrismicContent({document, params})
 }
 
 export async function generateMetadata({
@@ -17,5 +17,5 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  return await PrismicStaticParams("projects-post");
+  return await PrismicStaticParams(`projects-${document}`);
 }
