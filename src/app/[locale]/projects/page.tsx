@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { getLocale, setRequestLocale } from "next-intl/server";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
 import { components } from "@/slices";
@@ -13,9 +13,9 @@ const tag = "projects-post";
 
 export default async function Page() {
 	const locale = await getLocale();
+	setRequestLocale(locale);
 	const client = createClient();
-	const singletonData = await client.getAllByType(document, {lang: locale});
-	const singleton = singletonData[0]
+	const singleton = await client.getSingle(document, {lang: locale});
 	
 	if(!singleton) {
 		notFound()

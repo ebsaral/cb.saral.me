@@ -8,12 +8,13 @@ import { createClient } from "@/prismicio";
 
 import Card from "@/slices/Card"
 
-const document = "articles";
-const tag = "articles-post";
+const document = "stories";
+const tag = "stories-post";
 
 export default async function Page() {
 	const locale = await getLocale();
 	setRequestLocale(locale);
+
 	const client = createClient();
 	const singleton = await client.getSingle(document, {lang: locale});
 	

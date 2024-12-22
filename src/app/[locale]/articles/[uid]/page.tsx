@@ -1,11 +1,15 @@
 import { Metadata } from "next";
-import { PrismicMetadata, PrismicContent, PrismicStaticParams } from "@/components";
+import { PrismicMetadata, PrismicContent, PrismicGenerateStaticParams } from "@/components";
 import { PrismicParams } from "@/components/types";
+import { setRequestLocale } from "next-intl/server";
 
 const document = "post";
+const tag = `articles-${document}`
 
-export default async function Page({ params }: { params: Promise<PrismicParams> }) {
-  return await PrismicContent({document, params})
+export default async function Page({ params }: {params: Promise<PrismicParams>}) {
+  const {locale} = await params;
+  setRequestLocale(locale);
+  return await PrismicContent({document, tag, params})
 }
 
 export async function generateMetadata({
@@ -13,9 +17,9 @@ export async function generateMetadata({
 }: {
   params: Promise<PrismicParams>;
 }): Promise<Metadata> {
-  return await PrismicMetadata({document, params});
+  return await PrismicMetadata({document, tag, params});
 }
 
 export async function generateStaticParams() {
-  return await PrismicStaticParams(`articles-${document}`);
+  return await PrismicGenerateStaticParams(tag)
 }

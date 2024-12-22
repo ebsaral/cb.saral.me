@@ -4,7 +4,7 @@ import { PrismicParams } from "@/components/types";
 import { setRequestLocale } from "next-intl/server";
 
 const document = "post";
-const tag = `projects-${document}`
+const tag = `stories-${document}`
 
 export default async function Page({ params }: { params: Promise<PrismicParams> }) {
   const {locale} = await params;

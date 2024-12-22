@@ -1,3 +1,4 @@
+import { getLocale, setRequestLocale } from "next-intl/server";
 import Image from "next/image"
 
 export async function generateMetadata() {
@@ -12,7 +13,9 @@ export async function generateMetadata() {
   };
 }
 
-export default function Home() {
+export default async function Home() {
+  const locale = await getLocale();
+  setRequestLocale(locale);
   return (
     <section>
       <div className="container">

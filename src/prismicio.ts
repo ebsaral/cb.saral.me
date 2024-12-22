@@ -1,6 +1,8 @@
 import * as prismic from "@prismicio/client";
 import * as prismicNext from "@prismicio/next";
+import { notFound } from "next/navigation";
 import config from "../slicemachine.config.json";
+import { PrismicDocument as Document } from "@/components/types";
 
 /**
  * The project's Prismic repository name.
@@ -31,6 +33,14 @@ const routes: prismic.ClientConfig["routes"] = [
   	type: "articles",
   	path: "/:lang?/articles",
   },
+  {
+  	type: "post",
+  	path: "/:lang?/stories/:uid",
+  },
+  {
+  	type: "stories",
+  	path: "/:lang?/stories",
+  },
 ];
 
 /**
@@ -58,3 +68,22 @@ export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
 
   return client;
 };
+
+export async function getDocument(document: Document, uid: string, tag: string, locale: string) {
+  const client = createClient();
+  const query = await client.get({
+      filters: [
+          prismic.filter.at(
+              "document.type", document
+          ),
+          prismic.filter.at(
+              `my.${document}.uid`, uid
+          ),
+          prismic.filter.at(
+              "document.tags", [tag]
+          )
+      ],
+      lang: locale
+  }).catch(()=>notFound())
+  return query
+}
