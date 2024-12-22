@@ -10,7 +10,7 @@ import { Language } from "./Language";
 export default function Header() {
   const locale = useLocale();
   return (
-    <div className="sticky top-0 navbar bg-base-100">
+    <div className="sticky top-0 navbar bg-base-100 z-10">
       <div className="navbar-start">
        <Dropdown />
       </div>

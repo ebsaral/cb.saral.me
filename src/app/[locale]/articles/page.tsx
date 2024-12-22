@@ -8,8 +8,8 @@ import { createClient } from "@/prismicio";
 
 import Card from "@/slices/Card"
 
-const document = "projects";
-const tag = "projects-post";
+const document = "articles";
+const tag = "articles-post";
 
 export default async function Page() {
 	const locale = await getLocale();
@@ -35,7 +35,7 @@ export default async function Page() {
 							key={i} 
 							slices={page.data.slices}
 							components={{project_main: Card}}
-							context={{href: `/projects/${page.uid}`, locale}}
+							context={{href: `/articles/${page.uid}`, locale}}
 							/>
 						)
 					})
