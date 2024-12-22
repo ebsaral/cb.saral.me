@@ -6,7 +6,7 @@ import { GoProjectRoadmap } from "react-icons/go";
 import { FaPencil } from "react-icons/fa6";
 import { LuScanFace } from "react-icons/lu";
 import { RiHome9Fill } from "react-icons/ri";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { getBasepath } from "./Language";
 import { usePathname } from "next/navigation";
@@ -22,10 +22,11 @@ enum PAGE_PATHS {
 export function MenuListItems() {
     const t = useTranslations("Pages")
     const path = usePathname()
-    const curr = getBasepath(path)
+    const locale = useLocale();
+    const currPath = getBasepath(locale, path)
 
     function active(page: PAGE_PATHS) {
-        return curr == page ? "text-red-600 sm:border-b-2 border-b-red-600 text-red-600" :""
+        return currPath == page ? "text-red-600 sm:border-b-2 border-b-red-600 text-red-600" :""
     }
 
     return <>
