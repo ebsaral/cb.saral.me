@@ -8,8 +8,8 @@ import { LuScanFace } from "react-icons/lu";
 import { RiHome9Fill } from "react-icons/ri";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { getBasepath } from "./Language";
 import { usePathname } from "next/navigation";
+import { getBasepath } from "@/utils/helpers";
 
 enum PAGE_PATHS {
     HOME="/",
