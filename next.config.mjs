@@ -1,15 +1,6 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-import mdx from '@next/mdx'
-import remarkGfm from 'remark-gfm';
 
 const withNextIntl = createNextIntlPlugin();
-
-const withMDX = mdx({
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
-  },
-})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,4 +11,4 @@ const nextConfig = {
 }
 
 // Merge MDX config with Next.js config
-export default withNextIntl(withMDX(nextConfig))
+export default withNextIntl(nextConfig)
