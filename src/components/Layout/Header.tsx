@@ -19,7 +19,7 @@ export default function Header() {
       </div>
       <div className="navbar-center">
         <Link className="btn btn-ghost text-base sm:text-xl text-red-600" locale={locale} href="/">
-          <span className={`max-sm:hidden ${path != "/" && "text-foreground"}`}><RiHome9Fill /></span> cb.saral.me
+          <span className={`${path != "/" && "text-foreground"}`}><RiHome9Fill /></span> cb.saral.me
         </Link>
         <div className="ml-4 sm:ml-10 text-base sm:text-xl text-gray-600 max-sm:hidden">
           <ul className="menu menu-horizontal bg-base-200">

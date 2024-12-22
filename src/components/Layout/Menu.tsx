@@ -5,7 +5,6 @@ import { MdWorkHistory } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
 import { FaPencil } from "react-icons/fa6";
 import { LuScanFace } from "react-icons/lu";
-import { RiHome9Fill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useCurrentPath } from "@/utils/hooks";
@@ -34,7 +33,6 @@ export function MenuListItems() {
     }
 
     return <>
-        <li className={active(PAGE_PATHS.HOME) + " sm:hidden"} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.HOME}><RiHome9Fill />{' '}{t("Home.title")}</Link></li>
         <li className={active(PAGE_PATHS.PROJECTS)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.PROJECTS}><MdWorkHistory />{' '}{t("Projects.title")}</Link></li>
         <li className={active(PAGE_PATHS.ARTICLES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ARTICLES}><GoProjectRoadmap />{' '}{t("Articles.title")}</Link></li>
         <li className={active(PAGE_PATHS.STORIES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.STORIES}><FaPencil />{' '}{t("Stories.title")}</Link></li>
