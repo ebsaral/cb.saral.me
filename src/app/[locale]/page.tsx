@@ -19,7 +19,7 @@ export default function Home() {
         <div className="flex flex-col items-center m-10 gap-10">
           <h1>Merhaba | Hello | Hallo | Salut | etc...</h1>
           <div><b>This website is under construction.</b></div>
-          <div>most likely to be online between February - March &apos;25</div>
+          <div>most likely to be <i>ready handmade</i> between February - March &apos;25</div>
           <div>
             <Image
                 className="rounded-3xl"
