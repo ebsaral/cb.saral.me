@@ -1,7 +1,7 @@
 {
   "id": "project_main",
   "type": "SharedSlice",
-  "name": "ProjectMain",
+  "name": "Content",
   "description": "ProjectMain",
   "variations": [
     {
@@ -15,7 +15,7 @@
         "header_image": {
           "type": "Image",
           "config": {
-            "label": "",
+            "label": "Header Image",
             "constraint": {},
             "thumbnails": []
           }
@@ -23,7 +23,7 @@
         "content": {
           "type": "StructuredText",
           "config": {
-            "label": "",
+            "label": "Content",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"

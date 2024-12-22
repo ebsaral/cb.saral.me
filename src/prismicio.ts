@@ -16,8 +16,8 @@ export const repositoryName =
 
 const routes: prismic.ClientConfig["routes"] = [
   {
-  	type: "project_post",
-  	path: "/:lang?/project/:uid",
+  	type: "post",
+  	path: "/:lang?/projects/:uid",
   },
 ];
 

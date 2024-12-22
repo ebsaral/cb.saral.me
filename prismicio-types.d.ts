@@ -4,49 +4,49 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ProjectPostDocumentDataSlicesSlice = ProjectMainSlice;
+type PostDocumentDataSlicesSlice = ProjectMainSlice;
 
 /**
- * Content for Project Post documents
+ * Content for Post documents
  */
-interface ProjectPostDocumentData {
+interface PostDocumentData {
   /**
-   * Slice Zone field in *Project Post*
+   * Slice Zone field in *Post*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_post.slices[]
+   * - **API ID Path**: post.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ProjectPostDocumentDataSlicesSlice> /**
-   * Meta Title field in *Project Post*
+  slices: prismic.SliceZone<PostDocumentDataSlicesSlice> /**
+   * Meta Title field in *Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: project_post.meta_title
+   * - **API ID Path**: post.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */;
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Project Post*
+   * Meta Description field in *Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: project_post.meta_description
+   * - **API ID Path**: post.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Project Post*
+   * Meta Image field in *Post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_post.meta_image
+   * - **API ID Path**: post.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -54,29 +54,25 @@ interface ProjectPostDocumentData {
 }
 
 /**
- * Project Post document from Prismic
+ * Post document from Prismic
  *
- * - **API ID**: `project_post`
+ * - **API ID**: `post`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ProjectPostDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<ProjectPostDocumentData>,
-    "project_post",
-    Lang
-  >;
+export type PostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
 
-export type AllDocumentTypes = ProjectPostDocument;
+export type AllDocumentTypes = PostDocument;
 
 /**
- * Primary content in *ProjectMain → Default → Primary*
+ * Primary content in *Content → Default → Primary*
  */
 export interface ProjectMainSliceDefaultPrimary {
   /**
-   * header_image field in *ProjectMain → Default → Primary*
+   * Header Image field in *Content → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -86,7 +82,7 @@ export interface ProjectMainSliceDefaultPrimary {
   header_image: prismic.ImageField<never>;
 
   /**
-   * content field in *ProjectMain → Default → Primary*
+   * Content field in *Content → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -97,7 +93,7 @@ export interface ProjectMainSliceDefaultPrimary {
 }
 
 /**
- * Default variation for ProjectMain Slice
+ * Default variation for Content Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -110,12 +106,12 @@ export type ProjectMainSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *ProjectMain*
+ * Slice variation for *Content*
  */
 type ProjectMainSliceVariation = ProjectMainSliceDefault;
 
 /**
- * ProjectMain Shared Slice
+ * Content Shared Slice
  *
  * - **API ID**: `project_main`
  * - **Description**: ProjectMain
@@ -147,9 +143,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      ProjectPostDocument,
-      ProjectPostDocumentData,
-      ProjectPostDocumentDataSlicesSlice,
+      PostDocument,
+      PostDocumentData,
+      PostDocumentDataSlicesSlice,
       AllDocumentTypes,
       ProjectMainSlice,
       ProjectMainSliceDefaultPrimary,

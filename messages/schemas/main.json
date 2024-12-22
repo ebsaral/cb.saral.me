@@ -3,9 +3,20 @@
 	"title": "JSON schema for Saral.me",
 	"type": "object",
 	"properties": {
-	  "title": {"type": "string"},
-	  "not_found": {"type": "string"}
+	  "not_found": {"type": "string"},
+	  "Pages": {
+		"type": "object",
+		"properties": {
+			"Home": {"$ref": "/Page"},
+			"Projects": {"$ref": "/Page"},
+			"Articles": {"$ref": "/Page"},
+			"Stories": {"$ref": "/Page"},
+			"About": {"$ref": "/Page"}
+		},
+		"required": ["Home", "Projects", "Articles", "Stories", "About"],
+		"additionalProperties": false
+	  }
 	},
-	"required": ["title", "not_found"],
+	"required": ["not_found"],
 	"additionalProperties": false
   }

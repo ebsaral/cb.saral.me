@@ -4,14 +4,16 @@ import { GoProjectRoadmap } from "react-icons/go";
 import { FaPencil } from "react-icons/fa6";
 import { LuScanFace } from "react-icons/lu";
 import { RiHome9Fill } from "react-icons/ri";
+import { useTranslations } from "next-intl";
 
 export function MenuListItems() {
+    const t = useTranslations("Pages")
     return <>
-        <li><a><RiHome9Fill /> Home</a></li>
-        <li><a><MdWorkHistory /> Projects</a></li>
-        <li><a><GoProjectRoadmap /> Articles</a></li>
-        <li><a><FaPencil />Stories</a></li>
-        <li><a><LuScanFace /> About</a></li>
+        <li><a><RiHome9Fill />{' '}{t("Home.title")}</a></li>
+        <li><a><MdWorkHistory />{' '}{t("Projects.title")}</a></li>
+        <li><a><GoProjectRoadmap />{' '}{t("Articles.title")}</a></li>
+        <li><a><FaPencil />{' '}{t("Stories.title")}</a></li>
+        <li><a><LuScanFace />{' '}{t("About.title")}</a></li>
     </>
 }
 
@@ -23,7 +25,7 @@ export function Dropdown () {
             </div>
             <ul
             tabIndex={0}
-            className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow border-2">
             <MenuListItems />
             </ul>
         </div>

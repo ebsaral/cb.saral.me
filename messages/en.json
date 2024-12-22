@@ -1,4 +1,20 @@
 {
-    "title": "Hello world!",
-    "not_found": "Not Found"
+    "not_found": "Not Found",
+    "Pages": {
+        "Home": {
+            "title": "Homepage"
+        },
+        "Projects": {
+            "title": "Projects"
+        },
+        "Articles": {
+            "title": "Articles"
+        },
+        "Stories": {
+            "title": "Stories"
+        },
+        "About": {
+            "title": "About"
+        }
+    }
 }

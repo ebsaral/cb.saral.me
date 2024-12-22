@@ -1,4 +1,20 @@
 {
-    "title": "Hello world!",
-    "not_found": "Not Found"
+    "not_found": "Sayfa bulunamadıç",
+    "Pages": {
+        "Home": {
+            "title": "Anasayfa"
+        },
+        "Projects": {
+            "title": "Projeler"
+        },
+        "Articles": {
+            "title": "Makaleler"
+        },
+        "Stories": {
+            "title": "Hikâyeler"
+        },
+        "About": {
+            "title": "Hakkında"
+        }
+    }
 }

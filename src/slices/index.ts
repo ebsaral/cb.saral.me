@@ -3,5 +3,5 @@
 import dynamic from "next/dynamic";
 
 export const components = {
-  project_main: dynamic(() => import("./ProjectMain")),
+  project_main: dynamic(() => import("./Content")),
 };

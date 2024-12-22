@@ -4,6 +4,7 @@ import { useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 
 import { MenuListItems, Dropdown } from "@/components";
+import { Language } from "./Language";
 
 
 // function basepath(pathname: string) {
@@ -26,7 +27,9 @@ export default function Header() {
           </ul>
         </div>
       </div>
-      <div className="navbar-end"></div>
+      <div className="navbar-end">
+        <Language />
+      </div>
     </div>
   )
 }

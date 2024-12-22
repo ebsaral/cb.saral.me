@@ -18,9 +18,9 @@ export async function PrismicMetadata({document, params}: {document: Document, p
     };
 }
 
-export async function PrismicStaticParams(document: Document) {
+export async function PrismicStaticParams(tag: string) {
     const client = createClient();
-    const pages = await client.getAllByType(document);
+    const pages = await client.getAllByTag(tag);
 
     return pages.map((page) => {
         return { uid: page.uid };
