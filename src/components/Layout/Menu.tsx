@@ -1,3 +1,5 @@
+"use client"
+
 import { HiMenuAlt2 } from "react-icons/hi";
 import { MdWorkHistory } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
@@ -6,15 +8,32 @@ import { LuScanFace } from "react-icons/lu";
 import { RiHome9Fill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { getBasepath } from "./Language";
+import { usePathname } from "next/navigation";
+
+enum PAGE_PATHS {
+    HOME="/",
+    PROJECTS="/projects",
+    ARTICLES="/articles",
+    STORIES="/stories",
+    ABOUT="/about"
+}
 
 export function MenuListItems() {
     const t = useTranslations("Pages")
+    const path = usePathname()
+    const curr = getBasepath(path)
+
+    function active(page: PAGE_PATHS) {
+        return curr == page ? "text-red-600 sm:border-b-2 border-b-red-600 text-red-600" :""
+    }
+
     return <>
-        <li><Link href="/"><RiHome9Fill />{' '}{t("Home.title")}</Link></li>
-        <li><Link href="/projects"><MdWorkHistory />{' '}{t("Projects.title")}</Link></li>
-        <li><Link href="/articles"><GoProjectRoadmap />{' '}{t("Articles.title")}</Link></li>
-        <li><Link href="/stories"><FaPencil />{' '}{t("Stories.title")}</Link></li>
-        <li><Link href="/about"><LuScanFace />{' '}{t("About.title")}</Link></li>
+        <li className={active(PAGE_PATHS.HOME)}><Link href={PAGE_PATHS.HOME}><RiHome9Fill />{' '}{t("Home.title")}</Link></li>
+        <li className={active(PAGE_PATHS.PROJECTS)}><Link href={PAGE_PATHS.PROJECTS}><MdWorkHistory />{' '}{t("Projects.title")}</Link></li>
+        <li className={active(PAGE_PATHS.ARTICLES)}><Link href={PAGE_PATHS.ARTICLES}><GoProjectRoadmap />{' '}{t("Articles.title")}</Link></li>
+        <li className={active(PAGE_PATHS.STORIES)}><Link href={PAGE_PATHS.STORIES}><FaPencil />{' '}{t("Stories.title")}</Link></li>
+        <li className={active(PAGE_PATHS.ABOUT)}><Link href={PAGE_PATHS.ABOUT}><LuScanFace />{' '}{t("About.title")}</Link></li>
     </>
 }
 

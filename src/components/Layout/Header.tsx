@@ -7,11 +7,6 @@ import { MenuListItems, Dropdown } from "@/components";
 import { Language } from "./Language";
 
 
-// function basepath(pathname: string) {
-//   const p = pathname.split('/', 2).filter((v)=>v.length > 0)[0] || "main"
-//   return p
-// } 
-
 export default function Header() {
   const locale = useLocale();
   return (
@@ -20,7 +15,7 @@ export default function Header() {
        <Dropdown />
       </div>
       <div className="navbar-center">
-        <Link className="btn btn-ghost text-base sm:text-xl" locale={locale} href="/">cb.saral.me</Link>
+        <Link className="btn btn-ghost text-base sm:text-xl text-red-600" locale={locale} href="/">cb.saral.me</Link>
         <div className="ml-4 sm:ml-10 text-base sm:text-xl text-gray-600 max-sm:hidden">
           <ul className="menu menu-horizontal bg-base-200">
             <MenuListItems />
