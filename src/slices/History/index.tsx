@@ -40,7 +40,7 @@ const History = async ({ slice }: HistoryProps) => {
     return (
       <div>
         <div className="divider">{slice.primary.title || t("default_title")}</div>
-        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical text-xs">
           <li>
             <div className="timeline-start">{formatDate(slice.primary.create_date)}</div>
               <div className="timeline-middle">
