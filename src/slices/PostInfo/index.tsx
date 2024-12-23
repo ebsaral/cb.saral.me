@@ -1,6 +1,8 @@
-import { Link } from "@/i18n/routing";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { CustomPrismicLink } from "../components";
+import { VscReferences } from "react-icons/vsc";
+
 
 /**
  * Props for `PostReferences`.
@@ -11,20 +13,20 @@ export type PostReferencesProps =
 /**
  * Component for "PostReferences" Slices.
  */
-const PostReferences = ({ slice }: PostReferencesProps) => {
+const PostReferences = async ({ slice }: PostReferencesProps) => {
   if(!slice.primary.display) {
     return <></>
   }
+  const count = slice.primary.references.length;
 
   const references = () => {
-    if(slice.primary.references.length == 0){
+    if(count == 0){
       return <div>There is no reference in this post.</div>
     }
     return (
-      <div>
+      <div className="flex flex-col gap-2">
         {slice.primary.references.map((reference, i)=> {
-          console.log(reference.link)
-          return <div key={i}><Link href={""}>{reference.link.text}</Link>: {reference.description}</div>
+          return <div key={i} className="py-2"><CustomPrismicLink className="font-bold link" link={reference.link} />: {reference.description}</div>
         })}
       </div>
     )
@@ -35,8 +37,16 @@ const PostReferences = ({ slice }: PostReferencesProps) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <div>{slice.primary.title}</div>
-      {references()}
+      <div className="bg-base-200 collapse">
+        <input type="checkbox" className="peer" />
+        <div className="collapse-title bg-slate-200 peer-checked:bg-slate-200 peer-checked:border-b peer-checked:border-b-black">
+          <div className="flex flex-row gap-3 items-center"><VscReferences /> {slice.primary.title} {"(" + count + ")"}</div>
+        </div>
+        <div
+          className="collapse-content bg-slate-200 peer-checked:bg-slate-200">
+          {references()}
+        </div>
+      </div>
     </section>
   );
 };

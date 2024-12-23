@@ -44,6 +44,13 @@
                   "label": "Change Note",
                   "placeholder": ""
                 }
+              },
+              "change_date": {
+                "type": "Timestamp",
+                "config": {
+                  "label": "Change Date",
+                  "placeholder": ""
+                }
               }
             }
           }

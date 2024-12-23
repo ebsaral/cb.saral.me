@@ -148,6 +148,18 @@ type PostDocumentDataSlicesSlice =
  */
 interface PostDocumentData {
   /**
+   * Category field in *Post*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: projects
+   * - **API ID Path**: post.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  category: prismic.SelectField<"projects" | "articles" | "stories", "filled">;
+
+  /**
    * Slice Zone field in *Post*
    *
    * - **Field Type**: Slice Zone
@@ -366,12 +378,12 @@ export interface HeroSliceDefaultPrimary {
   /**
    * Description field in *Hero → Default → Primary*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: hero.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  description: prismic.RichTextField;
+  description: prismic.KeyTextField;
 
   /**
    * Display field in *Hero → Default → Primary*
@@ -425,6 +437,16 @@ export interface HistorySliceDefaultPrimaryChangeNotesItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   change_note: prismic.KeyTextField;
+
+  /**
+   * Change Date field in *History → Default → Primary → Change Notes*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.change_notes[].change_date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  change_date: prismic.TimestampField;
 }
 
 /**

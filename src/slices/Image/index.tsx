@@ -18,7 +18,7 @@ const Image = ({ slice }: ImageProps) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <PrismicImage field={slice.primary.image} />
+      <PrismicImage className="max-w-full" field={slice.primary.image} />
     </section>
   );
 };

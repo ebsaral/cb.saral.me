@@ -1,7 +1,9 @@
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
-import { PrismicDocument } from "../types";
+import { PrismicImage, SliceComponentProps } from "@prismicio/react";
 import { Link } from "@/i18n/routing";
+import { createClient } from "@/prismicio";
+import { getLocale } from "next-intl/server";
+import { buildUrl, filterUIDs } from "../helpers";
 
 /**
  * Props for `PostList`.
@@ -11,33 +13,43 @@ export type PostListProps = SliceComponentProps<Content.PostListSlice>;
 /**
  * Component for "PostList" Slices.
  */
-const PostList = ({ slice }: PostListProps) => {
+const PostList = async({ slice }: PostListProps) => {
+  const locale = await getLocale();
+  
   if(!slice.primary.display){
     return <></>
   }
-  
-  const posts  = () => {
-    if(slice.primary.posts.length == 0){
-      return <div>There is no post to list</div>
-    }
-    return (<div>{slice.primary.posts.filter((post)=>!(post.post as PrismicDocument).isBroken).map((post, i)=>{
-      const data = post.post as PrismicDocument;
-      console.log(data)
-      return (<div key={i}>
-        {i+1}{') '}<Link href={data.url} locale={data.lang}>{data.uid}</Link>
-      </div>)
-    })}</div>)
-  }
 
+  const client = createClient()
+  const uidList = filterUIDs(slice)
+  const pages = await client.getAllByUIDs("post", uidList)
+
+  if(slice.primary.posts.length == 0){
+    return <section className="text-center">There is no posts.</section>
+  }
   return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      <div>{slice.primary.title} ({slice.primary.posts.length})</div>
-      {posts()}
+    <section>
+      <div className="divider">{slice.primary.title}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 items-center justify-around gap-6 z-0">
+        {pages.map((page) => {
+          return (
+            <div key={page.id} className="card bg-base-100 min-w-72 shadow-xl border-2">
+              <figure className="px-10 pt-10">
+                <PrismicImage className="rounded-xl" field={page.data.meta_image} />
+              </figure>
+              <div className="card-body items-center text-center">
+                <h2 className="card-title">{page.data.meta_title}</h2>
+                <p>{page.data.meta_description}</p>
+                <div className="card-actions justify-center">
+                <Link className="btn btn-primary" href={buildUrl(page)} locale={locale}>Read Now</Link>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </section>
-  );
+  )
 };
 
 export default PostList;

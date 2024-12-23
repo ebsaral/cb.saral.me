@@ -12,6 +12,15 @@
           "label": "UID"
         }
       },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "Category",
+          "placeholder": "",
+          "options": ["projects", "articles", "stories"],
+          "default_value": "projects"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

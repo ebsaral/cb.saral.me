@@ -15,7 +15,7 @@ const Content = ({ slice }: ContentProps) => {
   }
   return (
     <article
-      className="prose prose-slate prose-p:text-justify prose-p:indent-4"
+      className="max-w-full prose prose-slate prose-p:text-justify prose-p:indent-4"
       data-slice-type={slice}
       data-slice-variation={slice.variation}
     >

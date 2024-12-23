@@ -23,6 +23,8 @@ export default async function Home() {
           <h1>Merhaba | Hello | Hallo | Salut | etc...</h1>
           <div><b>This website is under construction.</b></div>
           <div>most likely to be <i>ready handmade</i> between February - March &apos;25</div>
+          <div className={"divider"}></div>
+          <div>don&apos;t mind the placeholder content.</div>
           <div>
             <Image
                 className="rounded-3xl"

@@ -1,6 +1,8 @@
-export type PrismicDocument = {
+import { PrismicDocument } from "@/components/types"
+
+export type LinkTypeDocument = {
     id: string,
-    type: string,
+    type: PrismicDocument,
     tags: string[],
     lang: string,
     slug: string,
@@ -11,4 +13,12 @@ export type PrismicDocument = {
     last_publication_date: string,
     key: string,
     isBroken: boolean
+}
+
+export type LinkTypeWeb = {
+    link_type: "Web",
+    url: string,
+    text: string
+    key: string,
+    target: string,
 }

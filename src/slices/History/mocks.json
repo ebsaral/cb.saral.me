@@ -33,6 +33,14 @@
 									"value": "shoulder",
 									"type": "Text"
 								}
+							],
+							[
+								"change_date",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Timestamp",
+									"value": "2013-12-23T20:02:19Z"
+								}
 							]
 						]
 					}

@@ -1,5 +1,5 @@
 import { Content } from "@prismicio/client";
-import { PrismicImage, PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `Hero`.
@@ -14,19 +14,19 @@ const Hero = ({ slice }: HeroProps) => {
     return <></>
   }
   return (
-    <section
-      className="flex flex-col sm:flex-row gap-6 items-stretch sm:items-start"
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      <div>
-        <PrismicImage className="w-96" field={slice.primary.image} />
+    <div
+      className="hero h-80"
+      style={{
+        backgroundImage: `url(${slice.primary.image.url})`,
+      }}>
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-content text-neutral-content text-center">
+        <div className="max-w-md">
+          <h1 className="mb-5 text-5xl font-bold">{slice.primary.title}</h1>
+          <p className="mb-5">{slice.primary.description}</p>
+        </div>
       </div>
-      <div>
-        <div>{slice.primary.title}</div>
-        <article className="prose prose-slate prose-p:text-justify prose-p:indent-4"><PrismicRichText field={slice.primary.description} /></article>
-      </div>
-    </section>
+    </div>
   );
 };
 
