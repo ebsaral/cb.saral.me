@@ -16,5 +16,16 @@
         "About": {
             "title": "Hakkında"
         }
+    },
+    "Slices": {
+        "History": {
+            "default_title": "İçerik Geçmişi",
+            "published": "İçerik yayına alındı."
+        },
+        "PostList": {
+            "default_title": "İçerik Listesi",
+            "read_now": "İçeriği Oku",
+            "no_post": "Henüz yayına alınan herhangi bir içerik yok."
+        }
     }
 }

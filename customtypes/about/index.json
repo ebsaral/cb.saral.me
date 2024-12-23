@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "divider": {
+              "type": "SharedSlice"
+            },
             "post_references": {
               "type": "SharedSlice"
             },

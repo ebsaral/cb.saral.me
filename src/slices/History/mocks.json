@@ -8,11 +8,6 @@
 				"type": "Timestamp",
 				"value": "2016-06-02T08:32:52Z"
 			},
-			"last_update_date": {
-				"__TYPE__": "FieldContent",
-				"type": "Date",
-				"value": "2022-01-25"
-			},
 			"location": {
 				"position": {
 					"lat": 48.8703712,
@@ -49,6 +44,11 @@
 			"display": {
 				"__TYPE__": "BooleanContent",
 				"value": false
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "standard",
+				"type": "Text"
 			}
 		},
 		"items": []

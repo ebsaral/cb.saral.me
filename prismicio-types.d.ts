@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type AboutDocumentDataSlicesSlice =
+  | DividerSlice
   | PostReferencesSlice
   | HistorySlice
   | PostListSlice
@@ -71,7 +72,14 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
-type ArticlesDocumentDataSlicesSlice = HistorySlice | PostListSlice | HeroSlice;
+type ArticlesDocumentDataSlicesSlice =
+  | PostReferencesSlice
+  | ProjectMainSlice
+  | DividerSlice
+  | ImageSlice
+  | HistorySlice
+  | PostListSlice
+  | HeroSlice;
 
 /**
  * Content for Articles documents
@@ -214,7 +222,14 @@ interface PostDocumentData {
 export type PostDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
 
-type ProjectsDocumentDataSlicesSlice = HistorySlice | PostListSlice | HeroSlice;
+type ProjectsDocumentDataSlicesSlice =
+  | PostReferencesSlice
+  | ImageSlice
+  | ProjectMainSlice
+  | DividerSlice
+  | HistorySlice
+  | PostListSlice
+  | HeroSlice;
 
 /**
  * Content for Projects documents
@@ -279,7 +294,14 @@ export type ProjectsDocument<Lang extends string = string> =
     Lang
   >;
 
-type StoriesDocumentDataSlicesSlice = HistorySlice | PostListSlice | HeroSlice;
+type StoriesDocumentDataSlicesSlice =
+  | PostReferencesSlice
+  | ImageSlice
+  | ProjectMainSlice
+  | DividerSlice
+  | HistorySlice
+  | PostListSlice
+  | HeroSlice;
 
 /**
  * Content for Stories documents
@@ -350,6 +372,62 @@ export type AllDocumentTypes =
   | PostDocument
   | ProjectsDocument
   | StoriesDocument;
+
+/**
+ * Primary content in *Divider → Default → Primary*
+ */
+export interface DividerSliceDefaultPrimary {
+  /**
+   * Text field in *Divider → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: divider.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Display field in *Divider → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: divider.default.primary.display
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  display: prismic.BooleanField;
+}
+
+/**
+ * Default variation for Divider Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DividerSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<DividerSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Divider*
+ */
+type DividerSliceVariation = DividerSliceDefault;
+
+/**
+ * Divider Shared Slice
+ *
+ * - **API ID**: `divider`
+ * - **Description**: Divider
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DividerSlice = prismic.SharedSlice<
+  "divider",
+  DividerSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -454,6 +532,16 @@ export interface HistorySliceDefaultPrimaryChangeNotesItem {
  */
 export interface HistorySliceDefaultPrimary {
   /**
+   * Title field in *History → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
    * Create Date field in *History → Default → Primary*
    *
    * - **Field Type**: Timestamp
@@ -462,16 +550,6 @@ export interface HistorySliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#timestamp
    */
   create_date: prismic.TimestampField;
-
-  /**
-   * Last Update Date field in *History → Default → Primary*
-   *
-   * - **Field Type**: Date
-   * - **Placeholder**: *None*
-   * - **API ID Path**: history.default.primary.last_update_date
-   * - **Documentation**: https://prismic.io/docs/field#date
-   */
-  last_update_date: prismic.DateField;
 
   /**
    * Location field in *History → Default → Primary*
@@ -857,6 +935,10 @@ declare module "@prismicio/client" {
       StoriesDocumentData,
       StoriesDocumentDataSlicesSlice,
       AllDocumentTypes,
+      DividerSlice,
+      DividerSliceDefaultPrimary,
+      DividerSliceVariation,
+      DividerSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

@@ -15,8 +15,34 @@
 		},
 		"required": ["Home", "Projects", "Articles", "Stories", "About"],
 		"additionalProperties": false
+	  },
+	  "Slices": {
+		"type": "object",
+		"properties": {
+			"History": {
+				"type": "object",
+				"properties": {
+					"default_title": {"type": "string"},
+					"published": {"type": "string"}
+				},
+				"required": ["default_title", "published"],
+				"additionalProperties": false
+			},
+			"PostList": {
+				"type": "object",
+				"properties": {
+					"default_title": {"type": "string"},
+					"read_now": {"type": "string"},
+					"no_post": {"type": "string"}
+				},
+				"required": ["default_title", "read_now", "no_post"],
+				"additionalProperties": false
+			}
+		},
+		"required": ["History", "PostList"],
+		"additionalProperties": false
 	  }
 	},
-	"required": ["not_found"],
+	"required": ["not_found", "Pages", "Slices"],
 	"additionalProperties": false
   }

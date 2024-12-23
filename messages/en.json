@@ -16,5 +16,16 @@
         "About": {
             "title": "About"
         }
+    },
+    "Slices": {
+        "History": {
+            "default_title": "Content History",
+            "published": "Content is published."
+        },
+        "PostList": {
+            "default_title": "Content List",
+            "read_now": "Read Now",
+            "no_post": "There is no content published yet."
+        }
     }
 }

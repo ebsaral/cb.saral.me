@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  divider: dynamic(() => import("./Divider")),
   hero: dynamic(() => import("./Hero")),
   history: dynamic(() => import("./History")),
   image: dynamic(() => import("./Image")),

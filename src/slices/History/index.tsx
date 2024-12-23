@@ -1,5 +1,6 @@
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { getTranslations } from "next-intl/server";
 
 import { MdEditNote } from "react-icons/md";
 
@@ -12,7 +13,9 @@ export type HistoryProps = SliceComponentProps<Content.HistorySlice>;
 /**
  * Component for "History" Slices.
  */
-const History = ({ slice }: HistoryProps) => {
+const History = async ({ slice }: HistoryProps) => {
+  const t = await getTranslations("Slices.History")
+
   if(!slice.primary.display){
     return <></>
   }
@@ -32,7 +35,7 @@ const History = ({ slice }: HistoryProps) => {
     
     return (
       <div>
-        <div className="divider">History</div>
+        <div className="divider">{slice.primary.title || t("default_title")}</div>
         <ul className="timeline timeline-vertical">
           <li>
             <div className="timeline-start">{slice.primary.create_date}</div>
@@ -48,7 +51,7 @@ const History = ({ slice }: HistoryProps) => {
                     clipRule="evenodd" />
                 </svg>
               </div>
-              <div className="timeline-end timeline-box">Published.</div>
+              <div className="timeline-end timeline-box">{t("published")}.</div>
               <hr />
           </li>
           {slice.primary.change_notes.map((note, i)=>{
