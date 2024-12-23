@@ -1,0 +1,48 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"create_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Timestamp",
+				"value": "2016-06-02T08:32:52Z"
+			},
+			"last_update_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2022-01-25"
+			},
+			"location": {
+				"position": {
+					"lat": 48.8703712,
+					"lng": 2.3865198
+				},
+				"__TYPE__": "GeoPointContent"
+			},
+			"change_notes": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"change_note",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "shoulder",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"display": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			}
+		},
+		"items": []
+	}
+]

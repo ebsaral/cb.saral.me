@@ -1,27 +1,27 @@
-import { Content } from "@prismicio/client";
-import { PrismicImage, PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { Main } from "@prismicio/client";
+import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 /**
- * Props for `ProjectMain`.
+ * Props for `Content`.
  */
-export type ProjectMainProps = SliceComponentProps<Content.ProjectMainSlice>;
+export type ContentProps = SliceComponentProps<Main.ContentSlice>;
 
 /**
- * Component for "ProjectMain" Slices.
+ * Component for "Content" Slices.
  */
-const ProjectMain = ({ slice }: ProjectMainProps) => {
+const Content = ({ slice }: ContentProps) => {
+  if(!slice.primary.display) {
+    return <></>
+  }
   return (
     <article
       className="prose prose-slate prose-p:text-justify prose-p:indent-4"
       data-slice-type={slice}
       data-slice-variation={slice.variation}
     >
-      <h1>{slice.primary.title}</h1>
-      <PrismicRichText field={slice.primary.description} />
-      <PrismicImage field={slice.primary.header_image} width={400} />
-      <PrismicRichText field={slice.primary.content} />
+      <PrismicRichText field={slice.primary.text} />
       </article>
   );
 };
 
-export default ProjectMain;
+export default Content;

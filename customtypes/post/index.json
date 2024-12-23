@@ -17,6 +17,18 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "post_references": {
+              "type": "SharedSlice"
+            },
+            "history": {
+              "type": "SharedSlice"
+            },
+            "image": {
+              "type": "SharedSlice"
+            },
+            "hero": {
+              "type": "SharedSlice"
+            },
             "project_main": {
               "type": "SharedSlice"
             }

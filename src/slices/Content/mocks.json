@@ -3,55 +3,20 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"content": {
+			"text": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Occaecat deserunt deserunt excepteur qui culpa voluptate anim proident minim amet sint deserunt. Fugiat id cupidatat duis."
+							"text": "Pariatur consequat amet et reprehenderit consequat do dolore ipsum. Elit culpa sit nisi ad ea dolor in reprehenderit tempor veniam enim ea est est. Et quis amet voluptate ullamco reprehenderit id excepteur."
 						}
 					}
 				]
 			},
-			"header_image": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-					"width": 4752,
-					"height": 3168
-				},
-				"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-				"width": 4752,
-				"height": 3168,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"description": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Et commodo velit reprehenderit sint Lorem Lorem."
-						}
-					}
-				]
-			},
-			"title": {
-				"__TYPE__": "FieldContent",
-				"value": "gasoline",
-				"type": "Text"
+			"display": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

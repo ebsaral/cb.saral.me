@@ -13,7 +13,7 @@ export default function Header() {
   const path = useCurrentPath();
 
   return (
-    <div className="sticky top-0 navbar bg-base-100 z-10">
+    <div className="sticky top-0 navbar bg-base-100 z-10 border-b-2">
       <div className="navbar-start">
        <Dropdown />
       </div>

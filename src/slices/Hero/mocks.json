@@ -41,6 +41,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "globe",
 				"type": "Text"
+			},
+			"display": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

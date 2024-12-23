@@ -1,0 +1,62 @@
+{
+  "id": "post_references",
+  "type": "SharedSlice",
+  "name": "PostInfo",
+  "description": "PostReferences",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "references": {
+          "type": "Group",
+          "config": {
+            "label": "References",
+            "repeat": true,
+            "fields": {
+              "description": {
+                "type": "Text",
+                "config": {
+                  "label": "Description",
+                  "placeholder": ""
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        },
+        "display": {
+          "type": "Boolean",
+          "config": {
+            "label": "Display",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

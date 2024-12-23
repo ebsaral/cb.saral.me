@@ -13,9 +13,5 @@ export async function PrismicContent({document, tag, params}: {document: Documen
         notFound()
     }
     const page = query.results[0]
-    return (
-    <section className="container max-w-3xl px-10">
-        <SliceZone slices={page.data.slices} components={components} />
-    </section>
-    )
+    return <SliceZone slices={page.data.slices} components={components} />
 }

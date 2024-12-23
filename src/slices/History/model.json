@@ -1,0 +1,64 @@
+{
+  "id": "history",
+  "type": "SharedSlice",
+  "name": "History",
+  "description": "History",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "create_date": {
+          "type": "Timestamp",
+          "config": {
+            "label": "Create Date",
+            "placeholder": ""
+          }
+        },
+        "last_update_date": {
+          "type": "Date",
+          "config": {
+            "label": "Last Update Date",
+            "placeholder": ""
+          }
+        },
+        "location": {
+          "type": "GeoPoint",
+          "config": {
+            "label": "Location"
+          }
+        },
+        "change_notes": {
+          "type": "Group",
+          "config": {
+            "label": "Change Notes",
+            "repeat": true,
+            "fields": {
+              "change_note": {
+                "type": "Text",
+                "config": {
+                  "label": "Change Note",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "display": {
+          "type": "Boolean",
+          "config": {
+            "label": "Display",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

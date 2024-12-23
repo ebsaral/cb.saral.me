@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ArticlesDocumentDataSlicesSlice = HeroSlice;
+type ArticlesDocumentDataSlicesSlice = HistorySlice | PostListSlice | HeroSlice;
 
 /**
  * Content for Articles documents
@@ -69,7 +69,12 @@ export type ArticlesDocument<Lang extends string = string> =
     Lang
   >;
 
-type PostDocumentDataSlicesSlice = ProjectMainSlice;
+type PostDocumentDataSlicesSlice =
+  | PostReferencesSlice
+  | HistorySlice
+  | ImageSlice
+  | HeroSlice
+  | ContentSlice;
 
 /**
  * Content for Post documents
@@ -130,7 +135,7 @@ interface PostDocumentData {
 export type PostDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
 
-type ProjectsDocumentDataSlicesSlice = HeroSlice;
+type ProjectsDocumentDataSlicesSlice = HistorySlice | PostListSlice | HeroSlice;
 
 /**
  * Content for Projects documents
@@ -195,7 +200,7 @@ export type ProjectsDocument<Lang extends string = string> =
     Lang
   >;
 
-type StoriesDocumentDataSlicesSlice = HeroSlice;
+type StoriesDocumentDataSlicesSlice = HistorySlice | PostListSlice | HeroSlice;
 
 /**
  * Content for Stories documents
@@ -267,68 +272,6 @@ export type AllDocumentTypes =
   | StoriesDocument;
 
 /**
- * Primary content in *Card → Default → Primary*
- */
-export interface CardSliceDefaultPrimary {
-  /**
-   * Title field in *Card → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: card.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Description field in *Card → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: card.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  description: prismic.RichTextField;
-
-  /**
-   * Header Image field in *Card → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: card.default.primary.header_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  header_image: prismic.ImageField<never>;
-}
-
-/**
- * Default variation for Card Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CardSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<CardSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Card*
- */
-type CardSliceVariation = CardSliceDefault;
-
-/**
- * Card Shared Slice
- *
- * - **API ID**: `card`
- * - **Description**: Card
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CardSlice = prismic.SharedSlice<"card", CardSliceVariation>;
-
-/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -361,6 +304,17 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
+
+  /**
+   * Display field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: hero.default.primary.display
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  display: prismic.BooleanField;
 }
 
 /**
@@ -391,48 +345,359 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
- * Primary content in *Content → Default → Primary*
+ * Item in *History → Default → Primary → Change Notes*
  */
-export interface ProjectMainSliceDefaultPrimary {
+export interface HistorySliceDefaultPrimaryChangeNotesItem {
   /**
-   * Header Image field in *Content → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_main.default.primary.header_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  header_image: prismic.ImageField<never>;
-
-  /**
-   * Description field in *Content → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_main.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  description: prismic.RichTextField;
-
-  /**
-   * Content field in *Content → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_main.default.primary.content
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  content: prismic.RichTextField;
-
-  /**
-   * Title field in *Content → Default → Primary*
+   * Change Note field in *History → Default → Primary → Change Notes*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_main.default.primary.title
+   * - **API ID Path**: history.default.primary.change_notes[].change_note
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  change_note: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *History → Default → Primary*
+ */
+export interface HistorySliceDefaultPrimary {
+  /**
+   * Create Date field in *History → Default → Primary*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.create_date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  create_date: prismic.TimestampField;
+
+  /**
+   * Last Update Date field in *History → Default → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.last_update_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  last_update_date: prismic.DateField;
+
+  /**
+   * Location field in *History → Default → Primary*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.location
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  location: prismic.GeoPointField;
+
+  /**
+   * Change Notes field in *History → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.change_notes[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  change_notes: prismic.GroupField<
+    Simplify<HistorySliceDefaultPrimaryChangeNotesItem>
+  >;
+
+  /**
+   * Display field in *History → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: history.default.primary.display
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  display: prismic.BooleanField;
+}
+
+/**
+ * Default variation for History Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HistorySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HistorySliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *History*
+ */
+type HistorySliceVariation = HistorySliceDefault;
+
+/**
+ * History Shared Slice
+ *
+ * - **API ID**: `history`
+ * - **Description**: History
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HistorySlice = prismic.SharedSlice<
+  "history",
+  HistorySliceVariation
+>;
+
+/**
+ * Primary content in *Image → Default → Primary*
+ */
+export interface ImageSliceDefaultPrimary {
+  /**
+   * Image field in *Image → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Display field in *Image → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: image.default.primary.display
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  display: prismic.BooleanField;
+}
+
+/**
+ * Default variation for Image Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Image*
+ */
+type ImageSliceVariation = ImageSliceDefault;
+
+/**
+ * Image Shared Slice
+ *
+ * - **API ID**: `image`
+ * - **Description**: Image
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSlice = prismic.SharedSlice<"image", ImageSliceVariation>;
+
+/**
+ * Item in *PostList → Default → Primary → Posts*
+ */
+export interface PostListSliceDefaultPrimaryPostsItem {
+  /**
+   * Post field in *PostList → Default → Primary → Posts*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post_list.default.primary.posts[].post
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  post: prismic.ContentRelationshipField<"post">;
+}
+
+/**
+ * Primary content in *PostList → Default → Primary*
+ */
+export interface PostListSliceDefaultPrimary {
+  /**
+   * Title field in *PostList → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post_list.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Posts field in *PostList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post_list.default.primary.posts[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  posts: prismic.GroupField<Simplify<PostListSliceDefaultPrimaryPostsItem>>;
+
+  /**
+   * Display field in *PostList → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: post_list.default.primary.display
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  display: prismic.BooleanField;
+}
+
+/**
+ * Default variation for PostList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PostListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PostList*
+ */
+type PostListSliceVariation = PostListSliceDefault;
+
+/**
+ * PostList Shared Slice
+ *
+ * - **API ID**: `post_list`
+ * - **Description**: PostList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostListSlice = prismic.SharedSlice<
+  "post_list",
+  PostListSliceVariation
+>;
+
+/**
+ * Item in *PostInfo → Default → Primary → References*
+ */
+export interface PostReferencesSliceDefaultPrimaryReferencesItem {
+  /**
+   * Description field in *PostInfo → Default → Primary → References*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post_references.default.primary.references[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Link field in *PostInfo → Default → Primary → References*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post_references.default.primary.references[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *PostInfo → Default → Primary*
+ */
+export interface PostReferencesSliceDefaultPrimary {
+  /**
+   * Title field in *PostInfo → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post_references.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * References field in *PostInfo → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post_references.default.primary.references[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  references: prismic.GroupField<
+    Simplify<PostReferencesSliceDefaultPrimaryReferencesItem>
+  >;
+
+  /**
+   * Display field in *PostInfo → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: post_references.default.primary.display
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  display: prismic.BooleanField;
+}
+
+/**
+ * Default variation for PostInfo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostReferencesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PostReferencesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PostInfo*
+ */
+type PostReferencesSliceVariation = PostReferencesSliceDefault;
+
+/**
+ * PostInfo Shared Slice
+ *
+ * - **API ID**: `post_references`
+ * - **Description**: PostReferences
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostReferencesSlice = prismic.SharedSlice<
+  "post_references",
+  PostReferencesSliceVariation
+>;
+
+/**
+ * Primary content in *Content → Default → Primary*
+ */
+export interface ContentSliceDefaultPrimary {
+  /**
+   * Text field in *Content → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_main.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Display field in *Content → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: project_main.default.primary.display
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  display: prismic.BooleanField;
 }
 
 /**
@@ -442,27 +707,27 @@ export interface ProjectMainSliceDefaultPrimary {
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProjectMainSliceDefault = prismic.SharedSliceVariation<
+export type ContentSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<ProjectMainSliceDefaultPrimary>,
+  Simplify<ContentSliceDefaultPrimary>,
   never
 >;
 
 /**
  * Slice variation for *Content*
  */
-type ProjectMainSliceVariation = ProjectMainSliceDefault;
+type ContentSliceVariation = ContentSliceDefault;
 
 /**
  * Content Shared Slice
  *
  * - **API ID**: `project_main`
- * - **Description**: ProjectMain
+ * - **Description**: Content
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProjectMainSlice = prismic.SharedSlice<
+export type ContentSlice = prismic.SharedSlice<
   "project_main",
-  ProjectMainSliceVariation
+  ContentSliceVariation
 >;
 
 declare module "@prismicio/client" {
@@ -484,7 +749,7 @@ declare module "@prismicio/client" {
     (): prismic.Migration<AllDocumentTypes>;
   }
 
-  namespace Content {
+  namespace Main {
     export type {
       ArticlesDocument,
       ArticlesDocumentData,
@@ -499,18 +764,33 @@ declare module "@prismicio/client" {
       StoriesDocumentData,
       StoriesDocumentDataSlicesSlice,
       AllDocumentTypes,
-      CardSlice,
-      CardSliceDefaultPrimary,
-      CardSliceVariation,
-      CardSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
-      ProjectMainSlice,
-      ProjectMainSliceDefaultPrimary,
-      ProjectMainSliceVariation,
-      ProjectMainSliceDefault,
+      HistorySlice,
+      HistorySliceDefaultPrimaryChangeNotesItem,
+      HistorySliceDefaultPrimary,
+      HistorySliceVariation,
+      HistorySliceDefault,
+      ImageSlice,
+      ImageSliceDefaultPrimary,
+      ImageSliceVariation,
+      ImageSliceDefault,
+      PostListSlice,
+      PostListSliceDefaultPrimaryPostsItem,
+      PostListSliceDefaultPrimary,
+      PostListSliceVariation,
+      PostListSliceDefault,
+      PostReferencesSlice,
+      PostReferencesSliceDefaultPrimaryReferencesItem,
+      PostReferencesSliceDefaultPrimary,
+      PostReferencesSliceVariation,
+      PostReferencesSliceDefault,
+      ContentSlice,
+      ContentSliceDefaultPrimary,
+      ContentSliceVariation,
+      ContentSliceDefault,
     };
   }
 }
