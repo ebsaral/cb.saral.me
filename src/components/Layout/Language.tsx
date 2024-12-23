@@ -12,8 +12,8 @@ export function Language() {
 
     return (
          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-            <PiGlobeSimpleDuotone className="text-xl" />
+            <div tabIndex={0} role="button" className="btn btn-ghost">
+            {locale} <PiGlobeSimpleDuotone className="text-xl" />
             </div>
             <ul tabIndex={0} className="menu menu-lg dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow border-2">
                 {locale != "tr" && <li><Link href={currPath} locale="tr">Türkçe</Link></li>}
