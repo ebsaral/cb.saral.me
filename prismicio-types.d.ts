@@ -552,6 +552,16 @@ export interface HistorySliceDefaultPrimary {
   create_date: prismic.TimestampField;
 
   /**
+   * Custom First Change Note field in *History → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.custom_creation_change_note
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  custom_creation_change_note: prismic.KeyTextField;
+
+  /**
    * Location field in *History → Default → Primary*
    *
    * - **Field Type**: GeoPoint

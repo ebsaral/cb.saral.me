@@ -21,7 +21,7 @@ const PostReferences = async ({ slice }: PostReferencesProps) => {
 
   const references = () => {
     if(count == 0){
-      return <div>There is no reference in this post.</div>
+      return <div>--</div>
     }
     return (
       <div className="flex flex-col gap-2">

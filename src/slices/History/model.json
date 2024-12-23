@@ -26,6 +26,13 @@
             "placeholder": ""
           }
         },
+        "custom_creation_change_note": {
+          "type": "Text",
+          "config": {
+            "label": "Custom First Change Note",
+            "placeholder": ""
+          }
+        },
         "location": {
           "type": "GeoPoint",
           "config": {

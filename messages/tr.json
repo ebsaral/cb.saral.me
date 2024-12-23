@@ -20,7 +20,9 @@
     "Slices": {
         "History": {
             "default_title": "İçerik Geçmişi",
-            "published": "İçerik yayına alındı."
+            "published": "İçerik yayına alındı.",
+            "date_not_found": "Tarih eklenmedi"
+            
         },
         "PostList": {
             "default_title": "İçerik Listesi",

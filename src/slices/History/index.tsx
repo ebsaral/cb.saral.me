@@ -1,6 +1,6 @@
-import { Content } from "@prismicio/client";
+import { Content, TimestampField } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { getTranslations } from "next-intl/server";
+import { getFormatter, getTranslations } from "next-intl/server";
 
 import { MdEditNote } from "react-icons/md";
 
@@ -15,6 +15,7 @@ export type HistoryProps = SliceComponentProps<Content.HistorySlice>;
  */
 const History = async ({ slice }: HistoryProps) => {
   const t = await getTranslations("Slices.History")
+  const format = await getFormatter();
 
   if(!slice.primary.display){
     return <></>
@@ -28,17 +29,20 @@ const History = async ({ slice }: HistoryProps) => {
   }
 
 
-  const changeNotes = () => {
-    if(slice.primary.change_notes.length == 0){
-      return <></>
+  const formatDate = (field: TimestampField) =>{
+    if(!field){
+      return <i>{t("date_not_found")}</i>
     }
-    
+    return format.dateTime(new Date(field?.toString() || ""), {year: "numeric", month: "long", day: "2-digit", localeMatcher: "best fit", hour: "2-digit", minute: "2-digit"})
+  }
+
+  const changeNotes = () => {    
     return (
       <div>
         <div className="divider">{slice.primary.title || t("default_title")}</div>
-        <ul className="timeline timeline-vertical">
+        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
           <li>
-            <div className="timeline-start">{slice.primary.create_date}</div>
+            <div className="timeline-start">{formatDate(slice.primary.create_date)}</div>
               <div className="timeline-middle">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -51,13 +55,14 @@ const History = async ({ slice }: HistoryProps) => {
                     clipRule="evenodd" />
                 </svg>
               </div>
-              <div className="timeline-end timeline-box">{t("published")}.</div>
+              <div className="timeline-end timeline-box">{slice.primary.custom_creation_change_note || t("published")}</div>
               <hr />
           </li>
           {slice.primary.change_notes.map((note, i)=>{
               return (
                 <li key={i}>
-                  <div className="timeline-start">{note.change_date}</div>
+                  <hr />
+                  <div className="timeline-start">{formatDate(note.change_date)}</div>
                   <div className="timeline-middle">
                     <MdEditNote className="text-xl" />
                   </div>

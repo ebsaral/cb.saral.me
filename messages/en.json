@@ -20,7 +20,8 @@
     "Slices": {
         "History": {
             "default_title": "Content History",
-            "published": "Content is published."
+            "published": "Content is published.",
+            "date_not_found": "Date is missing"
         },
         "PostList": {
             "default_title": "Content List",

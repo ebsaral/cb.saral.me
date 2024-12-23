@@ -49,6 +49,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "standard",
 				"type": "Text"
+			},
+			"custom_creation_change_note": {
+				"__TYPE__": "FieldContent",
+				"value": "order",
+				"type": "Text"
 			}
 		},
 		"items": []
