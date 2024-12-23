@@ -1,10 +1,10 @@
-import { Main } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `History`.
  */
-export type HistoryProps = SliceComponentProps<Main.HistorySlice>;
+export type HistoryProps = SliceComponentProps<Content.HistorySlice>;
 
 /**
  * Component for "History" Slices.

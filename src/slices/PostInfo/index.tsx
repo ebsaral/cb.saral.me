@@ -1,12 +1,12 @@
 import { Link } from "@/i18n/routing";
-import { Main } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `PostReferences`.
  */
 export type PostReferencesProps =
-  SliceComponentProps<Main.PostReferencesSlice>;
+  SliceComponentProps<Content.PostReferencesSlice>;
 
 /**
  * Component for "PostReferences" Slices.

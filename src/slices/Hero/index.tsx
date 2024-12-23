@@ -1,10 +1,10 @@
-import { Main } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { PrismicImage, PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `Hero`.
  */
-export type HeroProps = SliceComponentProps<Main.HeroSlice>;
+export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
 /**
  * Component for "Hero" Slices.

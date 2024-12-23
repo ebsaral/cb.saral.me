@@ -41,6 +41,10 @@ const routes: prismic.ClientConfig["routes"] = [
   	type: "stories",
   	path: "/:lang?/stories",
   },
+  {
+  	type: "about",
+  	path: "/:lang?/about",
+  },
 ];
 
 /**

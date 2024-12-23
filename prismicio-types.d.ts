@@ -4,6 +4,73 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type AboutDocumentDataSlicesSlice =
+  | PostReferencesSlice
+  | HistorySlice
+  | PostListSlice
+  | ImageSlice
+  | ProjectMainSlice
+  | HeroSlice;
+
+/**
+ * Content for About documents
+ */
+interface AboutDocumentData {
+  /**
+   * Slice Zone field in *About*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice> /**
+   * Meta Title field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: about.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: about.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *About*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * About document from Prismic
+ *
+ * - **API ID**: `about`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AboutDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
+
 type ArticlesDocumentDataSlicesSlice = HistorySlice | PostListSlice | HeroSlice;
 
 /**
@@ -74,7 +141,7 @@ type PostDocumentDataSlicesSlice =
   | HistorySlice
   | ImageSlice
   | HeroSlice
-  | ContentSlice;
+  | ProjectMainSlice;
 
 /**
  * Content for Post documents
@@ -266,6 +333,7 @@ export type StoriesDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | AboutDocument
   | ArticlesDocument
   | PostDocument
   | ProjectsDocument
@@ -677,7 +745,7 @@ export type PostReferencesSlice = prismic.SharedSlice<
 /**
  * Primary content in *Content → Default → Primary*
  */
-export interface ContentSliceDefaultPrimary {
+export interface ProjectMainSliceDefaultPrimary {
   /**
    * Text field in *Content → Default → Primary*
    *
@@ -707,16 +775,16 @@ export interface ContentSliceDefaultPrimary {
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ContentSliceDefault = prismic.SharedSliceVariation<
+export type ProjectMainSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<ContentSliceDefaultPrimary>,
+  Simplify<ProjectMainSliceDefaultPrimary>,
   never
 >;
 
 /**
  * Slice variation for *Content*
  */
-type ContentSliceVariation = ContentSliceDefault;
+type ProjectMainSliceVariation = ProjectMainSliceDefault;
 
 /**
  * Content Shared Slice
@@ -725,9 +793,9 @@ type ContentSliceVariation = ContentSliceDefault;
  * - **Description**: Content
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ContentSlice = prismic.SharedSlice<
+export type ProjectMainSlice = prismic.SharedSlice<
   "project_main",
-  ContentSliceVariation
+  ProjectMainSliceVariation
 >;
 
 declare module "@prismicio/client" {
@@ -749,8 +817,11 @@ declare module "@prismicio/client" {
     (): prismic.Migration<AllDocumentTypes>;
   }
 
-  namespace Main {
+  namespace Content {
     export type {
+      AboutDocument,
+      AboutDocumentData,
+      AboutDocumentDataSlicesSlice,
       ArticlesDocument,
       ArticlesDocumentData,
       ArticlesDocumentDataSlicesSlice,
@@ -787,10 +858,10 @@ declare module "@prismicio/client" {
       PostReferencesSliceDefaultPrimary,
       PostReferencesSliceVariation,
       PostReferencesSliceDefault,
-      ContentSlice,
-      ContentSliceDefaultPrimary,
-      ContentSliceVariation,
-      ContentSliceDefault,
+      ProjectMainSlice,
+      ProjectMainSliceDefaultPrimary,
+      ProjectMainSliceVariation,
+      ProjectMainSliceDefault,
     };
   }
 }

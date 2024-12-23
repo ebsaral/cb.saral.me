@@ -1,10 +1,10 @@
-import { Main } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { PrismicImage, SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `Image`.
  */
-export type ImageProps = SliceComponentProps<Main.ImageSlice>;
+export type ImageProps = SliceComponentProps<Content.ImageSlice>;
 
 /**
  * Component for "Image" Slices.

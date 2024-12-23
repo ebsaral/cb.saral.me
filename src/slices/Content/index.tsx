@@ -1,10 +1,10 @@
-import { Main } from "@prismicio/client";
+import { Content as ContentType } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `Content`.
  */
-export type ContentProps = SliceComponentProps<Main.ContentSlice>;
+export type ContentProps = SliceComponentProps<ContentType.ProjectMainSlice>;
 
 /**
  * Component for "Content" Slices.

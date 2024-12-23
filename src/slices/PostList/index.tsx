@@ -1,4 +1,4 @@
-import { Main } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { PrismicDocument } from "../types";
 import { Link } from "@/i18n/routing";
@@ -6,7 +6,7 @@ import { Link } from "@/i18n/routing";
 /**
  * Props for `PostList`.
  */
-export type PostListProps = SliceComponentProps<Main.PostListSlice>;
+export type PostListProps = SliceComponentProps<Content.PostListSlice>;
 
 /**
  * Component for "PostList" Slices.
