@@ -41,7 +41,7 @@ const runAsync = async () => {
 			console.info(`Successfully validated schema: ${locale}.json`)
 		}
 		else {
-			console.log(`Errors found in ${locale} schema:`)
+			console.error(`Errors found in ${locale} schema:`)
 			console.error(result.toString())
 			hasError = true
 		}
