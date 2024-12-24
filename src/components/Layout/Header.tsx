@@ -5,8 +5,9 @@ import { Link } from "@/i18n/routing";
 
 import { Dropdown, Language, Menu } from "@/components";
 import { useCurrentPath } from "@/utils/hooks";
-import { getMenuItemIcon } from "../helpers";
+
 import { PAGE_PATHS } from "@/types";
+import { MenuItemIcon } from "../helpers";
 
 
 export default function Header() {
@@ -20,7 +21,7 @@ export default function Header() {
       </div>
       <div className="navbar-center">
         <Link className="btn btn-ghost text-base sm:text-xl text-red-600" locale={locale} href="/">
-          <span className={`${path != "/" && "text-foreground"}`}>{getMenuItemIcon(PAGE_PATHS.HOME)}</span> cb.saral.me
+          <span className={`${path != "/" && "text-foreground"}`}><MenuItemIcon path={PAGE_PATHS.HOME} /></span> cb.saral.me
         </Link>
         <Menu />
       </div>

@@ -13,6 +13,6 @@ export const MenuItemIcons = {
     [PAGE_PATHS.ABOUT]: <LuScanFace />,
 }
 
-export function getMenuItemIcon(path: PAGE_PATHS) : React.ReactNode {
+export function MenuItemIcon({path} : {path: PAGE_PATHS}) : React.ReactNode {
     return MenuItemIcons[path]
 }

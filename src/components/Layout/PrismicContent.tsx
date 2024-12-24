@@ -9,7 +9,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { getBasepath } from "@/utils/helpers";
 import { AllDocumentTypes } from "../../../prismicio-types";
-import { getMenuItemIcon } from "../helpers";
+import { MenuItemIcon } from "../helpers";
 
 const PAGE_MESSAGE_PATHS = {
     [PAGE_PATHS.HOME]: "Home.title",
@@ -37,7 +37,7 @@ async function Breadcrumbs ({page, locale}: {page: AllDocumentTypes, locale: str
                 <li>
                     <Link href="/" locale={locale}>
                     <div className="flex flex-row gap-2 items-center">
-                        <div>{getMenuItemIcon(PAGE_PATHS.HOME)}</div>
+                        <div><MenuItemIcon path={PAGE_PATHS.HOME} /></div>
                         <div>{t(`${PAGE_MESSAGE_PATHS[PAGE_PATHS.HOME]}`)}</div>
                         </div>
                     </Link>
@@ -45,7 +45,7 @@ async function Breadcrumbs ({page, locale}: {page: AllDocumentTypes, locale: str
                 <li>
                     <Link href={currPath} locale={locale}>
                     <div className="flex flex-row gap-2 items-center">
-                        <div>{getMenuItemIcon(pagePath)}</div>
+                        <div><MenuItemIcon path={pagePath} /></div>
                         <div>{t(`${PAGE_MESSAGE_PATHS[pagePath]}`)}</div>
                         </div>
                     </Link>

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useCurrentPath } from "@/utils/hooks";
 import { PAGE_PATHS } from "@/types";
-import { getMenuItemIcon } from "../helpers";
+import { MenuItemIcon } from "../helpers";
 
 
 export function MenuListItems() {
@@ -24,10 +24,10 @@ export function MenuListItems() {
     }
 
     return <>
-        <li className={active(PAGE_PATHS.PROJECTS)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.PROJECTS}>{getMenuItemIcon(PAGE_PATHS.PROJECTS)}{' '}{t("Projects.title")}</Link></li>
-        <li className={active(PAGE_PATHS.ARTICLES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ARTICLES}>{getMenuItemIcon(PAGE_PATHS.ARTICLES)}{' '}{t("Articles.title")}</Link></li>
-        <li className={active(PAGE_PATHS.STORIES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.STORIES}>{getMenuItemIcon(PAGE_PATHS.STORIES)}{' '}{t("Stories.title")}</Link></li>
-        <li className={active(PAGE_PATHS.ABOUT)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ABOUT}>{getMenuItemIcon(PAGE_PATHS.ABOUT)}{' '}{t("About.title")}</Link></li>
+        <li className={active(PAGE_PATHS.PROJECTS)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.PROJECTS}><MenuItemIcon path={PAGE_PATHS.PROJECTS} />{' '}{t("Projects.title")}</Link></li>
+        <li className={active(PAGE_PATHS.ARTICLES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ARTICLES}><MenuItemIcon path={PAGE_PATHS.ARTICLES} />{' '}{t("Articles.title")}</Link></li>
+        <li className={active(PAGE_PATHS.STORIES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.STORIES}><MenuItemIcon path={PAGE_PATHS.STORIES} />{' '}{t("Stories.title")}</Link></li>
+        <li className={active(PAGE_PATHS.ABOUT)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ABOUT}><MenuItemIcon path={PAGE_PATHS.ABOUT} />{' '}{t("About.title")}</Link></li>
     </>
 }
 
