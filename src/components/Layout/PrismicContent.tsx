@@ -35,7 +35,7 @@ async function Breadcrumbs ({page, locale}: {page: AllDocumentTypes, locale: str
         <div className="breadcrumbs text-sm">
             <ul>
                 <li>
-                    <Link href="/" locale={locale}>
+                    <Link className="link" href="/" locale={locale}>
                     <div className="flex flex-row gap-2 items-center">
                         <div><MenuItemIcon path={PAGE_PATHS.HOME} /></div>
                         <div>{t(`${PAGE_MESSAGE_PATHS[PAGE_PATHS.HOME]}`)}</div>
@@ -43,7 +43,7 @@ async function Breadcrumbs ({page, locale}: {page: AllDocumentTypes, locale: str
                     </Link>
                 </li>
                 <li>
-                    <Link href={currPath} locale={locale}>
+                    <Link className="link" href={currPath} locale={locale}>
                     <div className="flex flex-row gap-2 items-center">
                         <div><MenuItemIcon path={pagePath} /></div>
                         <div>{t(`${PAGE_MESSAGE_PATHS[pagePath]}`)}</div>
