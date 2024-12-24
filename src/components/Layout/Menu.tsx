@@ -1,21 +1,12 @@
 "use client"
 
 import { HiMenuAlt2 } from "react-icons/hi";
-import { MdWorkHistory } from "react-icons/md";
-import { GoProjectRoadmap } from "react-icons/go";
-import { FaPencil } from "react-icons/fa6";
-import { LuScanFace } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useCurrentPath } from "@/utils/hooks";
+import { PAGE_PATHS } from "@/types";
+import { getMenuItemIcon } from "../helpers";
 
-enum PAGE_PATHS {
-    HOME="/",
-    PROJECTS="/projects",
-    ARTICLES="/articles",
-    STORIES="/stories",
-    ABOUT="/about"
-}
 
 export function MenuListItems() {
     const closeDropdown = () => {
@@ -33,11 +24,21 @@ export function MenuListItems() {
     }
 
     return <>
-        <li className={active(PAGE_PATHS.PROJECTS)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.PROJECTS}><MdWorkHistory />{' '}{t("Projects.title")}</Link></li>
-        <li className={active(PAGE_PATHS.ARTICLES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ARTICLES}><GoProjectRoadmap />{' '}{t("Articles.title")}</Link></li>
-        <li className={active(PAGE_PATHS.STORIES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.STORIES}><FaPencil />{' '}{t("Stories.title")}</Link></li>
-        <li className={active(PAGE_PATHS.ABOUT)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ABOUT}><LuScanFace />{' '}{t("About.title")}</Link></li>
+        <li className={active(PAGE_PATHS.PROJECTS)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.PROJECTS}>{getMenuItemIcon(PAGE_PATHS.PROJECTS)}{' '}{t("Projects.title")}</Link></li>
+        <li className={active(PAGE_PATHS.ARTICLES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ARTICLES}>{getMenuItemIcon(PAGE_PATHS.ARTICLES)}{' '}{t("Articles.title")}</Link></li>
+        <li className={active(PAGE_PATHS.STORIES)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.STORIES}>{getMenuItemIcon(PAGE_PATHS.STORIES)}{' '}{t("Stories.title")}</Link></li>
+        <li className={active(PAGE_PATHS.ABOUT)} onClick={() => closeDropdown()}><Link href={PAGE_PATHS.ABOUT}>{getMenuItemIcon(PAGE_PATHS.ABOUT)}{' '}{t("About.title")}</Link></li>
     </>
+}
+
+export function Menu() {
+    return (
+        <div className="ml-4 sm:ml-10 text-base sm:text-xl text-gray-600 max-sm:hidden">
+            <ul className="menu menu-horizontal bg-base-200">
+            <MenuListItems />
+            </ul>
+        </div>
+    )
 }
 
 export function Dropdown () {
