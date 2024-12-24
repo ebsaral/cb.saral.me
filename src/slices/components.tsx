@@ -14,8 +14,8 @@ export const CustomPrismicLink = async ({link, className="", text=undefined} : {
     else {
         const l = link as LinkTypeDocument
         const client = createClient();
-        const page = await client.getByUID("post", l.uid, {lang: locale})
+        const page = await client.getByUID("post", l.uid, {lang: l.lang})
         const url = buildUrl(page)
-        return <Link className={className} key={l.key} href={url} locale={locale}>{text || page.data.meta_title}</Link>
+        return <Link className={className} key={l.key} href={url} locale={l.lang}>{text || page.data.meta_title}</Link>
     }
 }
