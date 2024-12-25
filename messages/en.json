@@ -33,7 +33,7 @@
         "title": "Comments",
         "placeholder": "Leave your comment",
         "submit": "Send",
-        "success": "Successfully delivered",
+        "success": "Your comment is delivered. Please refresh the page to see your comment.",
         "modal": {
             "title": "Error!",
             "text": "Form is not ready.",

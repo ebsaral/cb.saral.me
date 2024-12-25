@@ -32,9 +32,9 @@
     },
     "Comment": {
         "title": "Yorumlar",
-        "placeholder": "Yorumunuzu yazin",
+        "placeholder": "Yorumunuzu yazın",
         "submit": "Gönder",
-        "success": "Gönderildi",
+        "success": "Yorumunuz ulaştırıldı. Yorumunuzu görmek için sayfayı yenileyiniz.",
         "modal": {
             "title": "Hata!",
             "text": "Formu tamamlamadınız.",

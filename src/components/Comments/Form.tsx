@@ -57,7 +57,7 @@ export default function Form ({onSuccess}: {onSuccess?: () => void}) {
     }
 
     return (
-        <div className="form flex flex-col items-center gap-6">
+        <div className="form flex flex-col items-center gap-6 mb-10">
             <dialog id="form-error" className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">{t("modal.title")}</h3>
@@ -73,9 +73,9 @@ export default function Form ({onSuccess}: {onSuccess?: () => void}) {
                 value={value}
                 onChange={(event) => {
                     const value = event.currentTarget.value
+                    setValue(value)
                     if(value.length > 0) {
                         setDisabled(false)
-                        setValue(value)
                     }
                     else {
                         setDisabled(true)
