@@ -10,6 +10,7 @@ import { Link } from "@/i18n/routing";
 import { getBasepath } from "@/utils/helpers";
 import { AllDocumentTypes } from "../../../prismicio-types";
 import { MenuItemIcon } from "../helpers";
+import {Comment} from "@/components"
 
 const PAGE_MESSAGE_PATHS = {
     [PAGE_PATHS.HOME]: "Home.title",
@@ -59,8 +60,7 @@ async function Breadcrumbs ({page, locale}: {page: AllDocumentTypes, locale: str
 export async function PrismicContent({document, tag, params}: {document: Document, tag: string, params: Promise<PrismicParams>}) {
     const { uid, locale } = await params;
     const query = await getDocument(document, uid, tag, locale);
-    
-    
+
     if(query.results.length == 0){
         notFound()
     }
@@ -69,5 +69,6 @@ export async function PrismicContent({document, tag, params}: {document: Documen
     return (<>
         <Breadcrumbs page={page} locale={locale} />
         <SliceZone slices={page.data.slices} components={components} />
+        <Comment />
     </>)
 }
