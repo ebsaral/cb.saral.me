@@ -26,17 +26,17 @@ export default function Form ({onSuccess}: {onSuccess?: () => void}) {
     }
 
     const handleSubmit = () => {
-        if(!value) {
-            return
-        }
-        if(!token) {
+        const message = value.trim()
+
+        if(!message || !token) {
             showErrorDialog()
             return
         }
+        
         console.info("Sending comment")
         setDisabled(true)
 
-        axios.post(apiPath, {message: value, token}).catch(() => {
+        axios.post(apiPath, {message, token}).catch(() => {
             showErrorDialog()
             recaptchaRef.current?.reset()
         }).then((data) => {
@@ -72,7 +72,7 @@ export default function Form ({onSuccess}: {onSuccess?: () => void}) {
             <textarea
                 value={value}
                 onChange={(event) => {
-                    const value = event.currentTarget.value.trim()
+                    const value = event.currentTarget.value
                     if(value.length > 0) {
                         setDisabled(false)
                         setValue(value)
