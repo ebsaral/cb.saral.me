@@ -99,7 +99,7 @@ export async function POST(req: NextRequest,  { params }: { params: Promise<{ lo
             body: data.message,
             discussionId: await getOrCreateDiscussion(locale, uid)
         }, GITHUB_WRITE_API_TOKEN)
-        revalidatePath(`/${locale}/${postCategory}/{uid}`, 'page')
+        revalidatePath(`/${locale}/${postCategory}/${uid}`, 'page')
         return Response.json({uid: uid, locale:locale, comment: comment.data.addDiscussionComment.comment})
     }
     catch {
