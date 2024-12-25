@@ -42,8 +42,29 @@
 		},
 		"required": ["History", "PostList"],
 		"additionalProperties": false
-	  }
+	  },
+	  "Comment": {
+		"type": "object",
+		"properties": {
+			"title": {"type": "string"},
+			"placeholder": {"type": "string"},
+			"submit": {"type": "string"},
+			"success": {"type": "string"},
+			"modal": {
+				"type": "object",
+				"properties": {
+					"title": {"type": "string"},
+					"text": {"type": "string"},
+					"close": {"type": "string"}
+				},
+				"required": ["title", "text", "close"],
+				"additionalProperties": false
+			}
+		},
+		"required": ["title", "placeholder", "submit", "success", "modal"],
+		"additionalProperties": false
+		}
 	},
-	"required": ["not_found", "Pages", "Slices"],
+	"required": ["not_found", "Pages", "Slices", "Comment"],
 	"additionalProperties": false
   }

@@ -29,5 +29,16 @@
             "read_now": "İçeriği Oku",
             "no_post": "Henüz yayına alınan herhangi bir içerik yok."
         }
+    },
+    "Comment": {
+        "title": "Yorumlar",
+        "placeholder": "Yorumunuzu yazin",
+        "submit": "Gönder",
+        "success": "Gönderildi",
+        "modal": {
+            "title": "Hata!",
+            "text": "Formu tamamlamadınız.",
+            "close": "Kapat"
+        }
     }
 }

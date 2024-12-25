@@ -28,5 +28,16 @@
             "read_now": "Read Now",
             "no_post": "There is no content published yet."
         }
+    },
+    "Comment": {
+        "title": "Comments",
+        "placeholder": "Leave your comment",
+        "submit": "Send",
+        "success": "Successfully delivered",
+        "modal": {
+            "title": "Error!",
+            "text": "Form is not ready.",
+            "close": "Close"
+        }
     }
 }
