@@ -61,10 +61,31 @@
 				"additionalProperties": false
 			}
 		},
-		"required": ["title", "placeholder", "submit", "success", "modal"],
-		"additionalProperties": false
+			"required": ["title", "placeholder", "submit", "success", "modal"],
+			"additionalProperties": false
+		},
+		"Main": {
+			"type": "object",
+			"properties": {
+				"coming_soon": {"type": "string"},
+				"title": {"type": "string"},
+				"construction": {"type": "string"},
+				"info": {"type": "string"},
+				"subtitle": {"type": "string"}
+			},
+			"required": ["coming_soon", "title", "construction", "info", "subtitle"],
+			"additionalProperties": false
+		},
+		"Footer": {
+			"type": "object",
+			"properties": {
+				"info": {"type": "string"},
+				"github": {"type": "string"}
+			},
+			"required": ["info", "github"],
+			"additionalProperties": false
 		}
 	},
-	"required": ["not_found", "Pages", "Slices", "Comment"],
+	"required": ["not_found", "Pages", "Slices", "Comment", "Main", "Footer"],
 	"additionalProperties": false
   }

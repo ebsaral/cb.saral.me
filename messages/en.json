@@ -39,5 +39,16 @@
             "text": "Form is not ready.",
             "close": "Close"
         }
+    },
+    "Main": {
+        "coming_soon": "Coming Soon",
+        "title": "Merhaba | Hello | Hallo | Salut | etc...",
+        "construction": "This website is under construction.",
+        "info": "most likely to be ready handmade between February and April '25",
+        "subtitle": "don't mind the placeholder content."
+    },
+    "Footer": {
+        "info": "Copyright © {date} - All rights & donuts are reserved by <owner_link>me</owner_link>.",
+        "github": "<github_link>Github Source</github_link>"
     }
 }

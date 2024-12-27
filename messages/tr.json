@@ -40,5 +40,16 @@
             "text": "Formu tamamlamadınız.",
             "close": "Kapat"
         }
+    },
+    "Main": {
+        "coming_soon": "Yakında",
+        "title": "Merhaba | Hello | Hallo | Salut | filan...",
+        "construction": "Bu site şu an yapım aşamasında.",
+        "info": "Muhtemelen Şubat ve Nisan (2025) ayları arasında el yapımı olarak hazır olacak",
+        "subtitle": "sitedeki geçici içeriği umursamayınız."
+    },
+    "Footer": {
+        "info": "Telif Hakkı © {date} - Tüm haklar ve haksızlıklar <owner_link>bana</owner_link> aittir.",
+        "github": "<github_link>Github Kaynağı</github_link>"
     }
 }

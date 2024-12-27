@@ -1,13 +1,14 @@
-import { getLocale, setRequestLocale } from "next-intl/server";
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image"
 
 export async function generateMetadata() {
- 
+  const t = await getTranslations("Main")
   return {
-    title: "Coming Soon",
+    title: t("coming_soon"),
     description: "",
     openGraph: {
       images: [
+        '/main.png'
       ]
     }
   };
@@ -15,16 +16,17 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const locale = await getLocale();
+  const t = await getTranslations("Main")
   setRequestLocale(locale);
   return (
     <section>
       <div className="container">
         <div className="flex flex-col items-center m-10 gap-10">
-          <h1>Merhaba | Hello | Hallo | Salut | etc...</h1>
-          <div><b>This website is under construction.</b></div>
-          <div>most likely to be <i>ready handmade</i> between February - March &apos;25</div>
+          <h1>{t("title")}</h1>
+          <div><b>{t("construction")}</b></div>
+          <div>{t("info")}</div>
           <div className={"divider"}></div>
-          <div>don&apos;t mind the placeholder content.</div>
+          <div>{t("subtitle")}</div>
           <div>
             <Image
                 className="rounded-3xl"
