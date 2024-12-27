@@ -27,7 +27,7 @@ export const CustomPrismicImage = async ({field}: {field: ImageField}) => {
     return (
         <div className="flex flex-col">
             <PrismicImage className="max-w-full mb-0 mt-4" field={field} />
-            <div className="flex flex-col bg-gray-200 p-2 text-foreground">
+            <div className="flex flex-col bg-gray-100 p-2 text-foreground">
                 {field.alt && <div>{field.alt}</div>}
                 {field.copyright && <div className="text-xs">© {field.copyright}</div>}
             </div>
