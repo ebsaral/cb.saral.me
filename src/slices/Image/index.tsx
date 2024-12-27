@@ -1,5 +1,6 @@
 import { Content } from "@prismicio/client";
-import { PrismicImage, SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
+import { CustomPrismicImage } from "../components";
 
 /**
  * Props for `Image`.
@@ -18,7 +19,7 @@ const Image = ({ slice }: ImageProps) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <PrismicImage className="max-w-full" field={slice.primary.image} />
+      <CustomPrismicImage field={slice.primary.image} />
     </section>
   );
 };
