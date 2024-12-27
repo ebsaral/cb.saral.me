@@ -32,7 +32,7 @@ const PostReferences = async ({ slice }: PostReferencesProps) => {
         <div
           className="collapse-content bg-gray-100 peer-checked:bg-gray-200">
           <div className="flex flex-col gap-2 divide-y divide-gray-600">
-            {slice.primary.references.filter((r) => (r as unknown as {type: string}).type != "broken_type").map((reference, i)=> {
+            {slice.primary.references.filter((r) => (r.link as unknown as {type: string}).type != "broken_type").map((reference, i)=> {
               return <Reference key={i} reference={reference} />
             })}
           </div>
