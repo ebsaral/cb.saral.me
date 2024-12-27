@@ -145,6 +145,7 @@ export type ArticlesDocument<Lang extends string = string> =
   >;
 
 type PostDocumentDataSlicesSlice =
+  | DividerSlice
   | PostReferencesSlice
   | HistorySlice
   | ImageSlice
