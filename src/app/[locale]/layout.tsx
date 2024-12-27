@@ -11,6 +11,7 @@ import { Inter } from 'next/font/google'
  
 import "../globals.css";
 import { Wrapper } from '@/components';
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -44,6 +45,7 @@ export default async function RootLayout({
           <PrismicPreview repositoryName={repositoryName} />
           <Analytics />
           <SpeedInsights />
+          <Script async={true} defer={true} src="https://static.cdn.prismic.io/prismic.js?new=true&repo=cbsaral" />
         </NextIntlClientProvider>
       </body>
     </html>
