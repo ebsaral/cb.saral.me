@@ -16,7 +16,7 @@ export default async function Comment ({comment}: {comment: GComment}) {
             <div dangerouslySetInnerHTML={{
                 __html: comment.bodyHTML
             }}></div>
-            <div className="text-sm flex flex-row gap-2">
+            <div className="text-sm flex flex-row gap-2 items-center">
                 <FiClock /> {formatDate(comment.createdAt)}
             </div>
         </div>
