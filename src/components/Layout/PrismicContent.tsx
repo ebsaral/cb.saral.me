@@ -29,7 +29,6 @@ export async function PrismicContent({document, tag, params}: {document: Documen
     return (<>
         <Breadcrumbs page={page} locale={locale} />
         <SliceZone slices={page.data.slices} components={components} />
-        <div className="divider"></div>
         <Comments data={response.data.comments.nodes} />
     </>)
 }

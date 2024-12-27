@@ -1,6 +1,5 @@
 import { Content } from "@prismicio/client";
 import { PrismicImage, SliceComponentProps } from "@prismicio/react";
-import { Link } from "@/i18n/routing";
 import { createClient } from "@/prismicio";
 import { getLocale, getTranslations } from "next-intl/server";
 import { buildUrl, filterUIDs } from "../helpers";
@@ -36,18 +35,15 @@ const PostList = async({ slice }: PostListProps) => {
         {pages.length == 0 && <div>{t("no_post")}</div>}
         {pages.map((page) => {
           return (
-            <div key={page.id} className="card bg-base-100 min-w-72 shadow-xl border-2">
+            <a key={page.id} href={buildUrl(page)} className="group card bg-base-100 min-w-72 shadow-xl border-2 hover:bg-gray-100">
               <figure className="px-10 pt-10">
                 <PrismicImage className="rounded-xl" field={page.data.meta_image} />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">{page.data.meta_title}</h2>
+                <h2 className="card-title group-hover:underline">{page.data.meta_title}</h2>
                 <p>{page.data.meta_description}</p>
-                <div className="card-actions justify-center">
-                <Link className="btn btn-primary" href={buildUrl(page)} locale={locale}>{t("read_now")}</Link>
-                </div>
               </div>
-            </div>
+            </a>
           )
         })}
       </div>
